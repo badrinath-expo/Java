@@ -142,7 +142,41 @@ public class Ep75_heapsProblems1 {
 
 
     /********** problem 4  ***********/
+static long minCost(long[] arr, long n){
+    PriorityQueue<Long> minHeap = new PriorityQueue<>();
 
+    
+    for (Long element : arr) {
+        minHeap.add(element);
+    }
+
+    long cost = 0;
+
+    while (minHeap.size() > 1) {
+        long a = minHeap.peek();
+        minHeap.remove();
+
+        long b = minHeap.peek();
+        minHeap.remove();
+
+        long sum = a + b;
+        cost +=sum;
+
+        minHeap.add(sum);
+    }
+
+    return cost;
+} // Dry run and understand why it works
+
+/************* Problem 5 **************/
+//Given BST is a complete Binary tree
+//MinOrder property -> N < L, N<R  
+static void cnvertBSTtoMinHeap(){
+/* Given CBT, so structure won't change
+ * Since it is BST,It has every node, N < L and  N < R,  Take inorder from the tree, we got a sorted elements.
+ * Insert into the Bst, such that N < L < R. This NLR comes with preOrder. So, insert into the same BST with preorder traversal, then the tree becomes heap 
+ */
+}
 
     public static void main(String[] args) {
 
