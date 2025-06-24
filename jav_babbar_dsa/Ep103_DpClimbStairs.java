@@ -1,4 +1,4 @@
-public class Ep93_DpClimbStairs {
+public class Ep103_DpClimbStairs {
 
 /* ********** Distinct ways to climb stairs **************** */
     static int solve(int nStairs, int i){
