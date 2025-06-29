@@ -1,5 +1,6 @@
 import java.util.*;
-
+//Buy and sell part 1
+//buy and sell only 1 time to get maximum profit
 public class Main {
   
   int maxProfit(int prices[]){
