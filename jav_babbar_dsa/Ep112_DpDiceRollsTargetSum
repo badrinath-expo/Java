@@ -1,0 +1,93 @@
+import java.util.*;
+
+public class Main {
+  
+  int solve(int dice, int faces, int target){
+     //base cases
+     if(target < 0) return 0;
+     if(dice == 0 && target!=0) return 0;
+     if(target == 0 && dice != 0) return 0 //0 ways
+     if(dice == 0 && target == 0) return 1;
+     
+     long ans = 0;
+    
+    for(int i=1;i<= faces;i++){
+      ans += solve(dice-1,faces,target-i);      
+    }
+    
+    return ans;
+  }
+  
+  long solveMem(int dice, int faces, int target, int[][] dp){
+     //base cases
+     if(target < 0) return 0;
+     if(dice == 0 && target!=0) return 0;
+     if(target == 0 && dice != 0) return 0 //0 ways
+     if(dice == 0 && target == 0) return 1;
+     
+     if(dp[dice][target]!=-1) return dp[dice][target];
+     long ans = 0;
+    
+    for(int i=1;i<= faces;i++){
+      ans += solveMem(dice-1,faces,target-i,dp);      
+    }
+    
+    return dp[dice][target] = ans;
+  }
+   
+  int solveTab(int d,int f,int t){
+    
+    int dp[][] = new int[d+1][t+1];
+    dp[0][0] =1;
+    
+    for(int dice=1;dice<=d;dice++){
+      for(int target = 1;target<=t;target++){
+        int ans = 0;
+        for(int i=1;i<=f;i++){
+          if(target-i >=0){
+          ans+=dp[dice-1][target-i];
+}
+}
+        dp[dice][target] = ans;
+      }
+    }
+    
+    return dp[d][t];
+  }
+   
+   
+   int spaceOptimize(int d,int f,int t){
+    
+    int prev[] = new int[t+1];
+    int curr[] = new int[t+1];
+    prev[0] =1;
+    
+    for(int dice=1;dice<=d;dice++){
+      for(int target = 1;target<=t;target++){
+        int ans = 0;
+        for(int i=1;i<=f;i++){
+          if(target-i >=0){
+          ans+=prev[target-i];
+}
+}
+        curr[target] = ans;
+      }
+      prev = curr.clone();
+    }
+    
+    return prev[t];
+  }
+   
+   //M - faces, N dice, X target
+  long noOfWays(int M,int N,int X){
+    int dp[][] = new int[N+1][target+1];
+    for(int i=0;i<=N;i++){
+      Arrays.fill(dp[i],-1);
+    }
+    
+    return solveMem(N,M,X,dp);
+  }
+    public static void main(String[] args) {
+      System.out.println("Hello, World!");
+  }
+}
