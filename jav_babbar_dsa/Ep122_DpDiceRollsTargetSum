@@ -1,5 +1,5 @@
 import java.util.*;
-
+//Dp + Distinct Ways
 public class Main {
   
   int solve(int dice, int faces, int target){
